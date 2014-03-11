@@ -1,0 +1,43 @@
+20
+ARAD 0 270
+BUCHAREST 325 102
+CRAIOVA 175 45
+DOBRETA 92 35
+EFORIE 475 44
+FAGARAS 196 225
+GIURGIU 317 25
+HIRSOVA 475 117
+IASI 460 283
+LUGOJ 90 169
+MEHADIA 84 107
+NEAMT 400 324
+ORADEA 30 342
+PITESTI 240 150
+RIMNICU VILCEA 149 181
+SIBIU 120 250
+TIMISOARA 20 225
+URZICENI 405 102
+VASLUI 487 217
+ZERIND 15 311
+0 x x x x x x x x x x x x x x 140 118 x x 75
+x 0 x x x 211 90 x x x x x x 101 x x x 85 x x
+x x 0 120 x x x x x x x x x 138 146 x x x x x
+x x 120 0 x x x x x x 75 x x x x x x x x x
+x x x x 0 x x 86 x x x x x x x x x x x x
+x 211 x x x 0 x x x x x x x x x 99 x x x x
+x 90 x x x x 0 x x x x x x x x x x x x x
+x x x x 86 x x 0 x x x x x x x x x 98 x x
+x x x x x x x x 0 x x 87 x x x x x x 92 x
+x x x x x x x x x 0 70 x x x x x 111 x x x
+x x x 75 x x x x x 70 0 x x x x x x x x x
+x x x x x x x x 87 x x 0 x x x x x x x x
+x x x x x x x x x x x x 0 x x 151 x x x 71
+x 101 138 x x x x x x x x x x 0 97 x x x x x
+x x 146 x x x x x x x x x x 97 0 80 x x x x
+140 x x x x 99 x x x x x x 151 x 80 0 x x x x
+118 x x x x x x x x 111 x x x x x x 0 x x x
+x 85 x x x x x 98 x x x x x x x x x 0 142 x
+x x x x x x x x 92 x x x x x x x x 142 0 x
+75 x x x x x x x x x x x 71 x x x x x x 0
+START = ARAD
+END = BUCHAREST
