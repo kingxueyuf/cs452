@@ -44,7 +44,6 @@ public class yufan_Util {
 	}
 
 	private static String getBoardString(int[][] transitedBoard) {
-		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < transitedBoard.length; i++) {
 			for (int j = 0; j < transitedBoard[0].length; j++) {
@@ -56,7 +55,6 @@ public class yufan_Util {
 	}
 
 	private static String getBlockString(Block transitedBlock) {
-		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
@@ -69,7 +67,6 @@ public class yufan_Util {
 	public static yufan_StateActionPair learnStateAction(yufan_State currentS,
 			int[] act, HashMap<String, yufan_StateActionPair> pair,
 			HashMap<String, ArrayList<String>> s_saMap) {
-		// TODO Auto-generated method stub
 		String stateKey = currentS.getBoardBlockS();
 
 		String actS = getActString(act);
@@ -98,7 +95,6 @@ public class yufan_Util {
 	}
 
 	private static String getActString(int[] act) {
-		// TODO Auto-generated method stub
 		StringBuilder sb =  new StringBuilder();
 		for (int i = 0; i < act.length; i++) {
 			sb.append(act[i]);
@@ -122,7 +118,6 @@ public class yufan_Util {
 			yufan_StateActionPair lastStateAction, Double currentU,
 			HashMap<yufan_StateActionPair, Double> uMap, double lastReward,
 			double e) {
-		// TODO Auto-generated method stub
 		Double Q = uMap.get(lastStateAction);
 
 		Q = Q + e * (lastReward + r * currentU - Q);
@@ -134,7 +129,6 @@ public class yufan_Util {
 			HashMap<yufan_StateActionPair, Double> uMap,
 			HashMap<String, ArrayList<String>> s_saMap,
 			HashMap<String, yufan_StateActionPair> pair) {
-		// TODO Auto-generated method stub
 		Double maxU = -999999.9;
 		int[] bestAct = null;
 
@@ -177,5 +171,4 @@ public class yufan_Util {
 		}
 		return transitedBlock;
 	}
-
 }

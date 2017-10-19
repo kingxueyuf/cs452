@@ -99,8 +99,8 @@ public class PlayGame extends JPanel implements ActionListener
         gamesPlayed = 1;
         board = new Board();
         
-        //robin-xue fixed here
-       // paintImmediately( 0, 0, 800, 600 );
+        // robin-xue fixed here, render UI
+        paintImmediately( 0, 0, 800, 600 );
         
         // we call the learning routine in
         // a separate thread (allows us to interrupt
@@ -126,15 +126,15 @@ public class PlayGame extends JPanel implements ActionListener
         for ( int i = 0; i < act[0]; i++ )
         {
             board.moveRight();
-            //robin-xue fixed here
-            //paintImmediately( 0, 0, 800, 600 );
-            //stall( speed );
+			// robin-xue fixed here, render UI
+            paintImmediately( 0, 0, 800, 600 );
+            stall( speed );
         }
         // rotate it
         for ( int i = 0; i < act[1]; i++ )
             board.rotateBlock();
-        //robin-xue fixed here
-        //paintImmediately( 0, 0, 800, 600 );
+        // robin-xue fixed here, render UI
+        paintImmediately( 0, 0, 800, 600 );
         
         // drops the block, returns the reward it gets
         r = getDropReward();
@@ -156,20 +156,22 @@ public class PlayGame extends JPanel implements ActionListener
         int deep = board.dropBlock();
         animateDrop( ( deep + 4 ), 10 );
         board.reconfigure();
-      //robin-xue fixed here
-       // paintImmediately( 0, 0, 800, 600 );
+        // robin-xue fixed here, render UI
+        paintImmediately( 0, 0, 800, 600 );
         
         // this is called whenever we have actually
         // filled up a row, so it can be trimmed out
         // (the good thing in Tetris)
         if ( board.findFullRows() )
         {
-        	//robin-xue fixed here
-            //paintImmediately( 0, 0, 800, 600 );
+        	// robin-xue fixed here, render UI
+            paintImmediately( 0, 0, 800, 600 );
             stall( speed * 2 );
             board.trimRows();
             
-            //robin add here
+            // robin-xue fixed here
+            // Add positive reward when found full row or rows
+            // Currently give reward as 100
             reward = 100;
             return reward;
         }
@@ -182,10 +184,12 @@ public class PlayGame extends JPanel implements ActionListener
         {
             score -= losePoints;
             board.pushDownRows( losePoints );
-          //robin-xue fixed here
-           // paintImmediately( 0, 0, 800, 600 );
+            // robin-xue fixed here, render UI
+            paintImmediately( 0, 0, 800, 600 );
             
-            //robin add here
+            // robin-xue fixed here
+            // Add negative reward when make stack higher
+            // Currently give reward as -100
             reward = -100;
             return reward;
         }
@@ -230,15 +234,19 @@ public class PlayGame extends JPanel implements ActionListener
             
             for ( int r = 0; r < numRuns; r++ )
             {
-            	//robin-xue add
+            	// robin-xue fixed here
+            	// p(taking action by random) = Learning rate
+            	// Learning rate = 1.0 / (numberOfRuns + 1), which means
+            	// The more times we run, p(taking action by random) goes down
+            	// The more times we run, p(taking action by learned experience) goes up
             	double d = 1.0;
             	agent.setE(d/(r+1));
                 score = learningSteps;
                 leftToPlay = learningSteps;
                 gameOver = false;
                 board = new Board();
-                //robin-xue fixed here
-               // paintImmediately( 0, 0, 800, 600 );
+                // robin-xue fixed here, render UI
+                paintImmediately( 0, 0, 800, 600 );
                 
                 for ( int s = 0; s < learningSteps; s++ )
                 {
@@ -259,9 +267,9 @@ public class PlayGame extends JPanel implements ActionListener
                 else
                 {
                     gameOver = true;
-                    //robin-xue fixed here
-                    //paintImmediately( 0, 0, 800, 600 );
-                    //stall( 1500 );
+                    // robin-xue fixed here, render UI
+                    paintImmediately( 0, 0, 800, 600 );
+                    stall( 1500 );
                     try
                     {
                     	System.out.println(gamesPlayed + " " + score);
@@ -291,8 +299,8 @@ public class PlayGame extends JPanel implements ActionListener
             {
                 System.err.println( "Error closing file: " + e );
             }
-          //robin-xue fixed here
-            //paintImmediately( 0, 0, 800, 600 );
+            // robin-xue fixed here, render UI
+            paintImmediately( 0, 0, 800, 600 );
             
             //robin-xue add
 //            agent.storeFile("storeData_learn.txt");
@@ -406,9 +414,9 @@ public class PlayGame extends JPanel implements ActionListener
         for ( int i = 0; i < deep; i++ )
         {
             board.moveCurrentBlockDown();
-          //robin-xue fixed here
-            //paintImmediately( 0, 0, 800, 600 );
-            //stall( speed );
+            // robin-xue fixed here, render UI
+            paintImmediately( 0, 0, 800, 600 );
+            stall( speed );
         }
     }
     

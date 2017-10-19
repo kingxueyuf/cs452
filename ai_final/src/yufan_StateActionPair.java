@@ -22,8 +22,6 @@ public class yufan_StateActionPair {
 	}
 
 	public void setKey(String key) {
-		// TODO Auto-generated method stub
 		this.key = key;
 	}
-
 }

@@ -95,5 +95,4 @@ public class yufan_State {
 		}
 		return transitedBlock;
 	}
-
 }
