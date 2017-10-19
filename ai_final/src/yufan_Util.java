@@ -13,8 +13,7 @@ public class yufan_Util {
 		return num;
 	}
 
-	public static yufan_State learnState(Block currentBlock, int[][] board,
-			HashMap<String, yufan_State> mdp,
+	public static yufan_State learnState(Block currentBlock, int[][] board, HashMap<String, yufan_State> mdp,
 			HashMap<String, ArrayList<String>> s_saMap) {
 
 		Block transitedBlock = transitBlock(currentBlock);
@@ -64,9 +63,8 @@ public class yufan_Util {
 		return sb.toString();
 	}
 
-	public static yufan_StateActionPair learnStateAction(yufan_State currentS,
-			int[] act, HashMap<String, yufan_StateActionPair> pair,
-			HashMap<String, ArrayList<String>> s_saMap) {
+	public static yufan_StateActionPair learnStateAction(yufan_State currentS, int[] act,
+			HashMap<String, yufan_StateActionPair> pair, HashMap<String, ArrayList<String>> s_saMap) {
 		String stateKey = currentS.getBoardBlockS();
 
 		String actS = getActString(act);
@@ -95,7 +93,7 @@ public class yufan_Util {
 	}
 
 	private static String getActString(int[] act) {
-		StringBuilder sb =  new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < act.length; i++) {
 			sb.append(act[i]);
 		}
@@ -114,10 +112,8 @@ public class yufan_Util {
 		return s1.equalState(s2);
 	}
 
-	public static void updateLastStateActionU(
-			yufan_StateActionPair lastStateAction, Double currentU,
-			HashMap<yufan_StateActionPair, Double> uMap, double lastReward,
-			double e) {
+	public static void updateLastStateActionU(yufan_StateActionPair lastStateAction, Double currentU,
+			HashMap<yufan_StateActionPair, Double> uMap, double lastReward, double e) {
 		Double Q = uMap.get(lastStateAction);
 
 		Q = Q + e * (lastReward + r * currentU - Q);
@@ -125,15 +121,12 @@ public class yufan_Util {
 		uMap.put(lastStateAction, Q);
 	}
 
-	public static int[] actGreedy(yufan_State currentState,
-			HashMap<yufan_StateActionPair, Double> uMap,
-			HashMap<String, ArrayList<String>> s_saMap,
-			HashMap<String, yufan_StateActionPair> pair) {
+	public static int[] actGreedy(yufan_State currentState, HashMap<yufan_StateActionPair, Double> uMap,
+			HashMap<String, ArrayList<String>> s_saMap, HashMap<String, yufan_StateActionPair> pair) {
 		Double maxU = -999999.9;
 		int[] bestAct = null;
 
-		ArrayList<String> sa_key_set = s_saMap.get(currentState
-				.getBoardBlockS());
+		ArrayList<String> sa_key_set = s_saMap.get(currentState.getBoardBlockS());
 		for (int i = 0; i < sa_key_set.size(); i++) {
 			String sa_key = sa_key_set.get(i);
 			yufan_StateActionPair sa = pair.get(sa_key);
@@ -160,8 +153,7 @@ public class yufan_Util {
 	}
 
 	private static Block transitBlock(Block currentBlock2) {
-		Block transitedBlock = new Block(currentBlock2.getType(),
-				currentBlock2.getX(), currentBlock2.getY());
+		Block transitedBlock = new Block(currentBlock2.getType(), currentBlock2.getX(), currentBlock2.getY());
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
 				if (transitedBlock.getPart(i, j) != 0) {

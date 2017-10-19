@@ -6,7 +6,7 @@ public class yufan_State {
 
 	private final static int transitedStableNum = 1;
 
-	public yufan_State(Block block, int[][] board,String boardBlockS) {
+	public yufan_State(Block block, int[][] board, String boardBlockS) {
 
 		this.currentBlock = block;
 		this.board = board;
@@ -84,8 +84,7 @@ public class yufan_State {
 	}
 
 	private Block transitBlock(Block currentBlock2) {
-		Block transitedBlock = new Block(currentBlock2.getType(), currentBlock2
-				.getX(), currentBlock2.getY());
+		Block transitedBlock = new Block(currentBlock2.getType(), currentBlock2.getX(), currentBlock2.getY());
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
 				if (transitedBlock.getPart(i, j) != 0) {
