@@ -112,16 +112,16 @@ public class yufan_Util {
 		return s1.equalState(s2);
 	}
 
-	public static void updateLastStateActionU(yufan_StateActionPair lastStateAction, Double currentU,
-			HashMap<yufan_StateActionPair, Double> uMap, double lastReward, double e) {
-		Double Q = uMap.get(lastStateAction);
+	public static void updateLastStateActionU(yufan_StateActionPair lastStateAction, Double currentQ,
+			HashMap<yufan_StateActionPair, Double> Q_Map, double lastReward, double e) {
+		Double lastQ = Q_Map.get(lastStateAction);
 
-		Q = Q + e * (lastReward + r * currentU - Q);
+		lastQ = lastQ + e * (lastReward + r * currentQ - lastQ);
 
-		uMap.put(lastStateAction, Q);
+		Q_Map.put(lastStateAction, lastQ);
 	}
 
-	public static int[] actGreedy(yufan_State currentState, HashMap<yufan_StateActionPair, Double> uMap,
+	public static int[] actGreedy(yufan_State currentState, HashMap<yufan_StateActionPair, Double> Q_Map,
 			HashMap<String, ArrayList<String>> s_saMap, HashMap<String, yufan_StateActionPair> pair) {
 		Double maxU = -999999.9;
 		int[] bestAct = null;
@@ -130,9 +130,9 @@ public class yufan_Util {
 		for (int i = 0; i < sa_key_set.size(); i++) {
 			String sa_key = sa_key_set.get(i);
 			yufan_StateActionPair sa = pair.get(sa_key);
-			if (uMap.get(sa).doubleValue() - maxU.doubleValue() > 0.01) {
+			if (Q_Map.get(sa).doubleValue() - maxU.doubleValue() > 0.01) {
 				bestAct = sa.getAct();
-				maxU = uMap.get(sa).doubleValue();
+				maxU = Q_Map.get(sa).doubleValue();
 			}
 		}
 
